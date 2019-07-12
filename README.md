@@ -6,6 +6,12 @@
   <strong>基于iView-Admin，打造极简后端管理系统</strong>
 </p>
 
+Vue Admin Pro，这是一个简单的后端管理系统，适用于后端程序员写一写简单的后端管理系统，逻辑较简单，也不涉及权限只有简单的登录Token认证。
+
+## 预览
+
+![重写登录页面](./images/login.png)
+
 ## 登录
 
 路径：
@@ -115,3 +121,34 @@ public class AuthController {
 ## 接口示例
 
 [vue-admin-pro-api](https://github.com/fengwenyi/vue-admin-pro-api)
+
+## token
+
+token格式推荐：`uid_token`
+
+在API请求的时候如何携带发起请求？
+
+如下示例：
+
+```javascript
+import axios from '@/libs/api.request'
+import { getToken } from '@/libs/util'
+
+export const data = (d1, d2) => {
+  const data = {
+    d1,
+    d2
+  }
+  return axios.request({
+    url: 'auth/login',
+    method: 'post',
+    dataType: 'json',
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'token': getToken()
+    },
+    data: data
+  })
+}
+```
+
