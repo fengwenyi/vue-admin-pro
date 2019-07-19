@@ -25,7 +25,6 @@ export const login = (account, password) => {
 /**
  * 退出登录
  * @param token
- * @returns {http.ClientRequest | ClientHttp2Stream | * | never | AxiosPromise<any>}
  */
 export const logout = (token) => {
   const data = {}

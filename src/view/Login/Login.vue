@@ -35,7 +35,6 @@
 <script>
 import adminLogo from '@/assets/images/logo.png'
 import config from '@/config'
-import './Login.less'
 export default {
   name: 'Login',
   data () {
@@ -68,6 +67,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="less">
+@import 'Login';
 </style>
