@@ -241,3 +241,55 @@ export const data = (d1, d2) => {
 }
 ```
 
+## API请求
+
+重新封装API接口请求
+
+[sess request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)
+
+
+示例
+
+```javascript
+import request from '@/libs/request'
+
+export function apiDataTest (data) {
+  const param = JSON.stringify(data)
+  return request({
+    url: '/data/test',
+    method: 'post',
+    data: param
+  })
+}
+```
+
+配置：
+
+```javascript
+export default {
+  // ...
+  /**
+   * 接口请求配置
+   */
+  api: {
+    /**
+     * header配置
+     */
+    header: {
+      /**
+       * 是否携带token(当token存在时)
+       */
+      token: true,
+      /**
+       * 自定义token key
+       */
+      tokenKey: 'token',
+      /**
+       * 是否采用JSON方式提交
+       */
+      json: true
+    }
+  }
+}
+```
+

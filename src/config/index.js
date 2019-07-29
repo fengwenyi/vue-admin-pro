@@ -33,5 +33,27 @@ export default {
       showInHeader: true, // 设为false后不会在顶部显示错误日志徽标
       developmentOff: true // 设为true后在开发环境不会收集错误信息，方便开发中排查错误
     }
+  },
+  /**
+   * 接口请求配置
+   */
+  api: {
+    /**
+     * header配置
+     */
+    header: {
+      /**
+       * 是否携带token(当token存在时)
+       */
+      token: true,
+      /**
+       * 自定义token key
+       */
+      tokenKey: 'token',
+      /**
+       * 是否采用JSON方式提交
+       */
+      json: true
+    }
   }
 }
