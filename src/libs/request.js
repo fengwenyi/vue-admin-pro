@@ -1,7 +1,8 @@
 import axios from 'axios'
 import config from '@/config'
 import { Message } from 'iview'
-import { getToken } from '@/libs/util'
+import { setToken, getToken } from '@/libs/util'
+import Router from '@/router/index'
 
 const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro
 
@@ -54,6 +55,10 @@ service.interceptors.response.use(
       return res.data
     } else {
       Message.error(res.msg)
+      setToken('')
+      Router.push({
+        name: 'login'
+      })
     }
   },
   error => {
