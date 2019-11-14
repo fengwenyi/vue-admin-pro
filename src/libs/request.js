@@ -1,6 +1,6 @@
 import axios from 'axios'
 import config from '@/config'
-import { Message } from 'iview'
+import { Message } from 'view-design'
 import { setToken, getToken } from '@/libs/util'
 import Router from '@/router/index'
 

@@ -1,5 +1,5 @@
 import { getParams } from '@/libs/util'
-import { Message } from 'iview'
+import { Message } from 'view-design'
 
 const USER_MAP = {
   jsdz: {

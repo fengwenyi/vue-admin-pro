@@ -25,9 +25,10 @@
     </section>
     <!-- 版本 -->
     <footer class="footer">
-      Copyright &copy;2019
-      <a target="_blank" href="https://fengwenyi.com">fengwenyi.com</a>
+      &copy;2019
+      <a target="_blank" href="https://www.fengwenyi.com">fengwenyi.com</a>
       <a target="_blank" href="https://github.com/iview/iview-admin">iView-admin</a>
+      <a target="_blank" href="https://www.iviewui.com/">View UI</a>
     </footer>
   </section>
 </template>
