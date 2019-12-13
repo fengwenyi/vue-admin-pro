@@ -60,8 +60,6 @@ export default {
       }
       this.$store.dispatch('login', this.loginInfo).then(() => {
         this.$router.push({ path: '/' })
-      }).catch(err => {
-        this.$Message.error(err)
       })
     }
   }

@@ -1,4 +1,5 @@
-import axios from '@/libs/api.request'
+// import axios from '@/libs/api.request'
+import request from '@/libs/request'
 
 /**
  * 登录
@@ -6,18 +7,29 @@ import axios from '@/libs/api.request'
  * @param password
  * @returns {http.ClientRequest | ClientHttp2Stream | * | never | AxiosPromise<any>}
  */
+// export const login = (account, password) => {
+//   const data = {
+//     account,
+//     password
+//   }
+//   return axios.request({
+//     url: 'auth/login',
+//     method: 'post',
+//     dataType: 'json',
+//     headers: {
+//       'Content-Type': 'application/json; charset=UTF-8'
+//     },
+//     data: data
+//   })
+// }
 export const login = (account, password) => {
   const data = {
     account,
     password
   }
-  return axios.request({
+  return request({
     url: 'auth/login',
     method: 'post',
-    dataType: 'json',
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8'
-    },
     data: data
   })
 }
@@ -28,14 +40,9 @@ export const login = (account, password) => {
  */
 export const logout = (token) => {
   const data = {}
-  return axios.request({
+  return request({
     url: 'auth/logout',
     method: 'get',
-    dataType: 'json',
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'token': token
-    },
     data: data
   })
 }

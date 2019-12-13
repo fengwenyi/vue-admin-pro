@@ -78,23 +78,12 @@ export default {
           account,
           loginInfo.password
         ).then(res => {
-          if (res.status === 200) {
-            const httpData = res.data
-            console.log(JSON.stringify(httpData))
-            const code = httpData.code
-            if (code === 0) {
-              const data = httpData.data
-              const token = data.token
-              // this.Cookies.set('Token', token)
-              commit('setToken', token)
-              resolve()
-            } else {
-              const msg = httpData.msg
-              reject(msg)
-            }
+          if (res.success) {
+            const token = res.data.token
+            // this.Cookies.set('Token', token)
+            commit('setToken', token)
+            resolve()
           }
-        }).catch(err => {
-          reject(err)
         })
       })
     },

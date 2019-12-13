@@ -1,8 +1,8 @@
 import axios from 'axios'
 import config from '@/config'
 import { Message } from 'view-design'
-import { setToken, getToken } from '@/libs/util'
-import Router from '@/router/index'
+import { getToken } from '@/libs/util'
+// import Router from '@/router/index'
 
 const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro
 
@@ -48,27 +48,16 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    const res = response.data
-
-    // console.log(res)
-    if (res.code === 0) {
-      return res.data
+    let httpStatus = response.status
+    if (httpStatus === 200) {
+      const res = response.data
+      if (!res.success) {
+        Message.error(res.message)
+      }
+      return res
     } else {
-      Message.error(res.msg)
-      setToken('')
-      Router.push({
-        name: 'login'
-      })
+      console.error(response)
     }
-  },
-  error => {
-    console.log('err' + error) // for debug
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
-    return Promise.reject(error)
   }
 )
 
