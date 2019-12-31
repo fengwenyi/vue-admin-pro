@@ -1,8 +1,8 @@
 import axios from 'axios'
 import config from '@/config'
 import { Message } from 'view-design'
-import { getToken } from '@/libs/util'
-// import Router from '@/router/index'
+import { setToken, getToken } from '@/libs/util'
+import Router from '@/router/index'
 
 const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro
 
@@ -38,21 +38,28 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   /**
-   * If you want to get http information such as headers or status
-   * Please return  response => response
-   */
+     * If you want to get http information such as headers or status
+     * Please return  response => response
+     */
 
   /**
-   * Determine the request status by custom code
-   * Here is just an example
-   * You can also judge the status by HTTP Status Code
-   */
+     * Determine the request status by custom code
+     * Here is just an example
+     * You can also judge the status by HTTP Status Code
+     */
   response => {
     let httpStatus = response.status
     if (httpStatus === 200) {
       const res = response.data
       if (!res.success) {
-        Message.error(res.message)
+        let message = res.message
+        Message.error(message)
+        if (message.indexOf('身份') > -1 ||
+                    message.indexOf('token') > -1) {
+          // 退出登录
+          setToken('')
+          Router.push('/login')
+        }
       }
       return res
     } else {

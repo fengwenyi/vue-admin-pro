@@ -71,12 +71,13 @@ export default {
   },
   actions: {
     // 登录
-    login ({ commit }, loginInfo) {
-      const account = loginInfo.account.trim()
+    login ({ commit }, user) {
+      const username = user.username
+      const password = user.password
       return new Promise((resolve, reject) => {
         login(
-          account,
-          loginInfo.password
+          username,
+          password
         ).then(res => {
           if (res.success) {
             const token = res.data.token
