@@ -1,6 +1,6 @@
 {
   "name": "vue-admin-pro",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Erwin.Feng<xfsy_2015@163.com>",
   "private": false,
   "scripts": {
@@ -47,6 +47,8 @@
     "less-loader": "^4.0.5",
     "lint-staged": "^6.0.0",
     "mockjs": "^1.0.1-beta3",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.5.13"
   },
   "browserslist": [
