@@ -1,57 +1,71 @@
 <template>
-    <!-- 主容器 -->
-    <section class="container">
-        <section class="bg"></section>
-        <section class="content">
-            <!-- 标题 -->
-            <section class="title">
-                <img :src="adminLogo" key="login-admin-logo">
-                <span>{{title}}</span>
-            </section>
-            <!-- 描述 -->
-            <section class="description">
-                Vue Admin Pro，始终在追求极简
-            </section>
-            <!-- 登录 form 标题 -->
-            <section class="login-way-region">
-                <Tabs value="login-way">
-                    <TabPane label="账号密码登录" name="login-way-1">
-                        <!-- 登录 form -->
-                        <section class="login-form">
-                            <Form ref="formLogin" :model="formLogin" :rules="ruleFormLogin" @keydown.enter.native="handleSubmit">
-                                <FormItem prop="username">
-                                    <Input type="text" v-model="formLogin.username" class="login-form-input" size="large"
-                                           prefix="ios-person" placeholder="请输入账号"/>
-                                </FormItem>
-                                <FormItem prop="password">
-                                    <Input type="password" v-model="formLogin.password" on-enter="handleSubmit"
-                                           class="login-form-input"
-                                           size="large" prefix="md-lock" placeholder="请输入密码"/>
-                                </FormItem>
-                                <FormItem>
-                                    <Button class="login-form-btn-submit" @click="handleSubmit" on-enter="handleSubmit"
-                                            type="primary">登 录
-                                    </Button>
-                                </FormItem>
-                            </Form>
-                        </section>
-                    </TabPane>
-                    <TabPane label="扫码登录" name="login-way-2">扫码登录</TabPane>
-                    <TabPane label="验证码登录" name="login-way-3">验证码登录</TabPane>
-                </Tabs>
-            </section>
+  <!-- 主容器 -->
+  <section class="container">
+    <section class="bg"></section>
+    <section class="content">
+      <section class="box-logo">
+        <img class="image-logo" :src="adminLogo" key="login-admin-logo">
+      </section>
+      <!-- 标题 -->
+      <section class="title">
 
+        <span>{{title}}</span>
+      </section>
+      <!-- 描述 -->
+      <section class="description">
+        始终在追求极简
+      </section>
+      <!-- 登录 form 标题 -->
+      <section class="box-login">
+
+        <!-- 登录 form -->
+        <section class="login-form">
+          <Form ref="formLogin" :model="formLogin" :rules="ruleFormLogin" @keydown.enter.native="handleSubmit">
+            <FormItem prop="username">
+              <Input type="text" v-model="formLogin.username" class="login-form-input" size="large"
+                     prefix="ios-person" placeholder="请输入账号"/>
+            </FormItem>
+            <FormItem prop="password">
+              <Input type="password" v-model="formLogin.password" on-enter="handleSubmit"
+                     class="login-form-input"
+                     size="large" prefix="md-lock" placeholder="请输入密码"/>
+            </FormItem>
+            <FormItem>
+              <Button class="login-form-btn-submit" @click="handleSubmit('formLogin')" on-enter="handleSubmit"
+                      type="primary">登 录
+              </Button>
+            </FormItem>
+          </Form>
         </section>
-        <!-- 版本 -->
-        <footer class="footer">
-            <div>
-                &copy;2019
-                <a target="_blank" href="https://www.fengwenyi.com">fengwenyi.com</a>
-                <a target="_blank" href="https://github.com/iview/iview-admin">iView-admin</a>
-                <a target="_blank" href="https://www.iviewui.com/">View UI</a>
-            </div>
-        </footer>
+        <section class="box-third-login">
+          <section class="box-item-content">
+            <Tooltip content="Apple登录">
+              <section class="item item-login-way-apple">
+                <Icon type="logo-apple"/>
+              </section>
+            </Tooltip>
+            <Tooltip content="Google登录">
+              <section class="item item-login-way-google">
+                <Icon type="logo-google"/>
+              </section>
+            </Tooltip>
+            <Tooltip content="Github登录">
+              <section class="item item-login-way-github">
+                <Icon type="logo-github"/>
+              </section>
+            </Tooltip>
+          </section>
+        </section>
+        <section class="box-login-way-select">
+          <span class="item" v-show="false">账号密码登录 <span class="split">|</span></span>
+          <span class="item">手机登录 <span class="split">|</span></span>
+          <span class="item">邮箱登录 <span class="split">|</span></span>
+          <span class="item">扫码登录</span>
+        </section>
+      </section>
+
     </section>
+  </section>
 </template>
 
 <script>
@@ -85,9 +99,13 @@ export default {
     }
   },
   methods: {
-    handleSubmit () {
-      this.$store.dispatch('login', this.formLogin).then(() => {
-        this.$router.push({ path: '/' })
+    handleSubmit (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$store.dispatch('login', this.formLogin).then(() => {
+            this.$router.push({ path: '/' })
+          })
+        }
       })
     }
   }
@@ -95,5 +113,5 @@ export default {
 </script>
 
 <style lang="less">
-    @import 'Login';
+  @import 'Login';
 </style>
