@@ -13,7 +13,7 @@
       </section>
       <!-- 描述 -->
       <section class="description">
-        始终在追求极简
+        <span>{{subtitle}}</span>
       </section>
       <!-- 登录 form 标题 -->
       <section class="box-login">
@@ -37,33 +37,11 @@
             </FormItem>
           </Form>
         </section>
-        <section class="box-third-login">
-          <section class="box-item-content">
-            <Tooltip content="Apple登录">
-              <section class="item item-login-way-apple">
-                <Icon type="logo-apple"/>
-              </section>
-            </Tooltip>
-            <Tooltip content="Google登录">
-              <section class="item item-login-way-google">
-                <Icon type="logo-google"/>
-              </section>
-            </Tooltip>
-            <Tooltip content="Github登录">
-              <section class="item item-login-way-github">
-                <Icon type="logo-github"/>
-              </section>
-            </Tooltip>
-          </section>
-        </section>
-        <section class="box-login-way-select">
-          <span class="item" v-show="false">账号密码登录 <span class="split">|</span></span>
-          <span class="item">手机登录 <span class="split">|</span></span>
-          <span class="item">邮箱登录 <span class="split">|</span></span>
-          <span class="item">扫码登录</span>
-        </section>
       </section>
 
+      <div class="footer">
+        &copy;2020 <a class="company" href="https://www.fengwenyi.com">fengwenyi.com</a>
+      </div>
     </section>
   </section>
 </template>
@@ -78,6 +56,7 @@ export default {
     return {
       adminLogo: adminLogo,
       title: config.title,
+      subtitle: config.subtitle,
       formLogin: {
         username: '',
         password: ''

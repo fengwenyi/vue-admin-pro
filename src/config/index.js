@@ -4,6 +4,10 @@ export default {
    */
   title: 'Vue Admin Pro',
   /**
+   * @description 副标题
+   */
+  subtitle: '始终在追求极简',
+  /**
    * @description token在Cookie中存储的天数，默认1天
    */
   cookieExpires: 1,
