@@ -213,7 +213,7 @@ public class AuthController {
 
 ## 接口示例
 
-[vue-admin-pro-api](https://github.com/fengwenyi/vue-admin-pro-api)
+[点此处传送门](https://github.com/fengwenyi/APIExample)
 
 ## token
 
