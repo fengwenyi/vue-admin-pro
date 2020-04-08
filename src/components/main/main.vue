@@ -73,7 +73,8 @@ export default {
       adminLogo,
       maxLogo,
       isFullscreen: false,
-      title: config.title
+      title: config.title,
+      userAvatar: ''
     }
   },
   computed: {
