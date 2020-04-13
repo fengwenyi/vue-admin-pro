@@ -26,7 +26,7 @@
                      prefix="ios-person" placeholder="请输入账号"/>
             </FormItem>
             <FormItem prop="password">
-              <Input type="password" v-model="formLogin.password" on-enter="handleSubmit"
+              <Input type="password" v-model="formLogin.password"
                      class="login-form-input"
                      size="large" prefix="md-lock" placeholder="请输入密码"/>
             </FormItem>
