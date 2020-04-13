@@ -20,7 +20,7 @@
 
         <!-- 登录 form -->
         <section class="login-form">
-          <Form ref="formLogin" :model="formLogin" :rules="ruleFormLogin" @keydown.enter.native="handleSubmit">
+          <Form ref="formLogin" :model="formLogin" :rules="ruleFormLogin" @keydown.enter.native="handleSubmit('formLogin')">
             <FormItem prop="username">
               <Input type="text" v-model="formLogin.username" class="login-form-input" size="large"
                      prefix="ios-person" placeholder="请输入账号"/>
