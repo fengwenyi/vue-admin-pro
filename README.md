@@ -72,7 +72,7 @@ Vue Admin Pro，这是一个简单的后端管理系统，适用于后端程序�
 │   │   ├── tools.js
 │   │   └── util.js
 │   ├── locale              // 国际化
-│   │   ├── index.js 
+│   │   ├── index.js
 │   │   └── lang            // 多语言
 │   ├── main.js             // main
 │   ├── mock                // 模拟后端接口
@@ -329,4 +329,10 @@ public class DataController {
 
 }
 ```
+
+## 资料
+
+- [View UI](http://v1.iviewui.com/)
+
+- [iview-admin文档](https://lison16.github.io/iview-admin-doc/#/)
 
