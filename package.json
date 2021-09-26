@@ -1,6 +1,6 @@
 {
   "name": "vue-admin-pro",
-  "version": "1.0.2",
+  "version": "1.1.0-SNAPSHOT",
   "author": "Erwin.Feng<xfsy_2015@163.com>",
   "private": false,
   "scripts": {
@@ -25,7 +25,7 @@
     "sortablejs": "^1.7.0",
     "tree-table-vue": "^1.1.0",
     "v-org-tree": "^1.0.6",
-    "view-design": "^4.0.2",
+    "view-design": "^4.6.1",
     "vue": "^2.5.10",
     "vue-i18n": "^7.8.0",
     "vue-router": "^3.0.1",
