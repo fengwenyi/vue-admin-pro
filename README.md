@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <strong>基于iView-Admin，最懂后端程序员的后台管理系统，View UI 4.0.2</strong>
+  <strong>基于iView-Admin，最懂后端程序员的后台管理系统，View UI 4.6.1</strong>
 </p>
 
 Vue Admin Pro，这是一个简单的后端管理系统，适用于后端程序员写一写简单的后端管理系统，逻辑较简单，也不涉及权限只有简单的登录Token认证。
