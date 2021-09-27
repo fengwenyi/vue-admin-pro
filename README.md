@@ -333,6 +333,5 @@ public class DataController {
 ## 资料
 
 - [View UI](http://v1.iviewui.com/)
-
 - [iview-admin文档](https://lison16.github.io/iview-admin-doc/#/)
-
+- [更新日志](LOG.md)

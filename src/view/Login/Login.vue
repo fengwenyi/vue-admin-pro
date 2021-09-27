@@ -40,7 +40,7 @@
       </section>
 
       <div class="footer">
-        &copy;2020 <a class="company" href="https://www.fengwenyi.com">fengwenyi.com</a>
+        &copy;2021 <a class="company" href="https://www.fengwenyi.com">fengwenyi.com</a>
       </div>
     </section>
   </section>
