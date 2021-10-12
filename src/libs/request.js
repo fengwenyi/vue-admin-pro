@@ -62,6 +62,22 @@ service.interceptors.response.use(
         }
       }
       return res
+    } else if (httpStatus === 400) {
+      const res = response.data
+      if (res) {
+        let message = res.message
+        Message.error(message)
+      } else {
+        console.error(response)
+      }
+    } else if (httpStatus === 500) {
+      const res = response.data
+      if (res) {
+        let message = res.message
+        Message.error(message)
+      } else {
+        console.error(response)
+      }
     } else {
       console.error(response)
     }

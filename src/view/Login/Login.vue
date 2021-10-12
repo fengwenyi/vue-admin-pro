@@ -92,5 +92,5 @@ export default {
 </script>
 
 <style lang="less">
-  @import 'Login';
+@import 'Login';
 </style>
