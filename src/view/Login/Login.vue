@@ -1,7 +1,6 @@
 <template>
   <!-- 主容器 -->
   <section class="container">
-    <section class="bg"></section>
     <section class="content">
       <section class="box-logo">
         <img class="image-logo" :src="adminLogo" key="login-admin-logo">

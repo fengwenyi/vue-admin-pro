@@ -1,6 +1,6 @@
 {
   "name": "vue-admin-pro",
-  "version": "1.1.1-SNAPSHOT",
+  "version": "1.1.1",
   "author": "Erwin.Feng<xfsy_2015@163.com>",
   "private": false,
   "scripts": {
