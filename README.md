@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <strong>基于iView-Admin，最懂后端程序员的后台管理系统，View UI 4.6.1</strong>
+  <strong>基于iView-Admin，最懂后端程序员的后台管理系统，View UI 4.7.0</strong>
 </p>
 
 Vue Admin Pro，这是一个简单的后端管理系统，适用于后端程序员写一写简单的后端管理系统，逻辑较简单，也不涉及权限只有简单的登录Token认证。
@@ -332,6 +332,6 @@ public class DataController {
 
 ## 资料
 
-- [View UI](http://v1.iviewui.com/)
+- [View UI](https://www.iviewui.com/)
 - [iview-admin文档](https://lison16.github.io/iview-admin-doc/#/)
 - [更新日志](LOG.md)
