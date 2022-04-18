@@ -24,7 +24,7 @@
 
   .content {
     width: 430px;
-    height: 465px;
+    height: 520px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -34,7 +34,7 @@
     z-index: 3;
     background: rgba(255, 255, 255, .9);
     border-radius: 5px;
-    padding: 50px 50px 10px;
+    padding: 30px 50px 10px;
     border: 1px solid #c3c3c3;
 
     @media screen and (max-width: 800px) {
@@ -79,11 +79,24 @@
       color: #666;
     }
 
+    .box-login-way-name {
+      margin-top: 20px;
+
+      .login-way-name {
+        margin: 0 auto;
+        width: 130px;
+        line-height: 30px;
+        text-align: center;
+        color: #2d8cf0;
+        border-bottom: 2px solid #2d8cf0;
+      }
+    }
+
     .box-login {
       .login-form {
-        margin-top: 30px;
+        margin-top: 10px;
 
-        .login-form-input {
+        .login-form-input, .btn-get-code {
           width: 100%;
           display: block;
           margin-top: 5px;
@@ -97,59 +110,20 @@
           font-size: 16px;
         }
       }
-    }
 
-    .box-third-login {
-      width: 100%;
-      height: 36px;
-      margin-top: 50px;
-      display: flex;
-      justify-content: center;
-
-      .box-item-content {
-        width: 200px;
-        display: flex;
-        justify-content: space-around;
-
-        .item {
-          width: 36px;
-          height: 36px;
-          border-radius: 36px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          font-size: 28px;
-          background-color: #000;
-          color: #fff;
-        }
-      }
-    }
-
-    .box-login-way-select {
-      width: 100%;
-      height: 45px;
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .item {
-        color: #2d8cf0;
-        cursor: pointer;
-
-        .split {
-          color: #aaa;
-          margin-left: 10px;
-          margin-right: 10px;
+      .box-other-login {
+        .btn-login {
+          margin-left: 16px;
         }
       }
     }
 
     .footer {
-      margin-top: 10px;
+      margin-top: 30px;
       display: flex;
       justify-content: center;
+      font-weight: lighter;
+      color: #999;
     }
 
 
