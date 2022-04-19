@@ -46,30 +46,31 @@
 
         <!-- 邮箱验证码登录 form -->
         <section v-if="loginWayCodeEmail" class="login-form">
-          <Form ref="formLogin2" :model="formLogin" :rules="ruleFormLogin"
-                @keydown.enter.native="handleSubmit('formLogin')">
-            <FormItem prop="username">
-              <Input type="text" v-model="formLogin.username" class="login-form-input" size="large"
+          <Form ref="formEmailLogin" :model="formEmailLogin" :rules="ruleFormEmailLogin"
+                @keydown.enter.native="handleSubmit('formEmailLogin')">
+            <FormItem prop="email">
+              <Input type="text" v-model="formEmailLogin.email" class="login-form-input" size="large"
                      prefix="md-mail" placeholder="邮箱"/>
             </FormItem>
-            <FormItem>
-              <Row>
+            <FormItem prop="code">
+              <Row :gutter="16">
                 <Col span="14">
                   <Input
                     type="text"
-                    v-model="formLogin.password"
+                    v-model="formEmailLogin.code"
                     class="login-form-input"
                     size="large"
                     prefix="md-lock"
                     placeholder="验证码"/>
                 </Col>
-                <Col span="8" offset="1">
-                  <Button size="large" class="btn-get-code">获取验证码</Button>
+                <Col span="10">
+                  <Button v-if="showBtnGetEmailCode" size="large" class="btn-get-code" @click="handleGetEmailCode">获取验证码</Button>
+                  <Button v-if="!showBtnGetEmailCode" size="large" class="btn-get-code" disabled="">{{ numGetEmailCodeCountdown }}</Button>
                 </Col>
               </Row>
             </FormItem>
             <FormItem>
-              <Button class="login-form-btn-submit" @click="handleSubmit('formLogin')" on-enter="handleSubmit"
+              <Button class="login-form-btn-submit" @click="handleSubmit('formEmailLogin')" on-enter="handleSubmit"
                       type="primary">登 录
               </Button>
             </FormItem>
@@ -78,30 +79,31 @@
 
         <!-- 手机验证码登录 form -->
         <section v-if="loginWayCodePhone" class="login-form">
-          <Form ref="formLogin2" :model="formLogin" :rules="ruleFormLogin"
-                @keydown.enter.native="handleSubmit('formLogin')">
-            <FormItem prop="username">
-              <Input type="text" v-model="formLogin.username" class="login-form-input" size="large"
+          <Form ref="ruleFormPhoneLogin" :model="formPhoneLogin" :rules="ruleFormPhoneLogin"
+                @keydown.enter.native="handleSubmit('formPhoneLogin')">
+            <FormItem prop="phone">
+              <Input type="text" v-model="formPhoneLogin.phone" class="login-form-input" size="large"
                      prefix="md-phone-portrait" placeholder="手机号"/>
             </FormItem>
-            <FormItem>
-              <Row>
+            <FormItem prop="code">
+              <Row :gutter="16">
                 <Col span="14">
                   <Input
                     type="text"
-                    v-model="formLogin.password"
+                    v-model="formPhoneLogin.code"
                     class="login-form-input"
                     size="large"
                     prefix="md-lock"
                     placeholder="验证码"/>
                 </Col>
-                <Col span="8" offset="1">
-                  <Button size="large" class="btn-get-code">获取验证码</Button>
+                <Col span="10">
+                  <Button v-if="showBtnGetPhoneCode" size="large" class="btn-get-code" @click="handleGetPhoneCode">获取验证码</Button>
+                  <Button v-if="!showBtnGetPhoneCode" size="large" class="btn-get-code" disabled="">{{ numGetPhoneCodeCountdown }}</Button>
                 </Col>
               </Row>
             </FormItem>
             <FormItem>
-              <Button class="login-form-btn-submit" @click="handleSubmit('formLogin')" on-enter="handleSubmit"
+              <Button class="login-form-btn-submit" @click="handleSubmit('formPhoneLogin')" on-enter="handleSubmit"
                       type="primary">登 录
               </Button>
             </FormItem>
@@ -155,14 +157,63 @@ export default {
       loginWayPwd: true,
       loginWayCodeEmail: false,
       loginWayCodePhone: false,
-      loginWayName: '账号密码登录'
+      loginWayName: '账号密码登录',
+      formEmailLogin: {
+        email: '',
+        code: ''
+      },
+      ruleFormEmailLogin: {
+        email: [
+          { required: true, message: '邮箱不能为空', trigger: 'blur' }
+        ],
+        code: [
+          { required: true, message: '验证码不能为空', trigger: 'blur' },
+          {
+            type: 'string',
+            min: 4,
+            message: '验证码不能少于4个字符',
+            trigger: 'blur'
+          }
+        ]
+      },
+      formPhoneLogin: {
+        phone: '',
+        code: ''
+      },
+      ruleFormPhoneLogin: {
+        phone: [
+          { required: true, message: '手机号不能为空', trigger: 'blur' }
+        ],
+        code: [
+          { required: true, message: '验证码不能为空', trigger: 'blur' },
+          {
+            type: 'string',
+            min: 4,
+            message: '验证码不能少于4个字符',
+            trigger: 'blur'
+          }
+        ]
+      },
+      showBtnGetEmailCode: true,
+      numGetEmailCodeCountdown: 59,
+      showBtnGetPhoneCode: true,
+      numGetPhoneCodeCountdown: 59
     }
   },
   methods: {
+    // 登录
     handleSubmit (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$store.dispatch('login', this.formLogin).then(() => {
+          let formData = {}
+          if (formName === 'formLogin') {
+            formData = this.formEmailLogin
+          } else if (formName === 'formEmailLogin') {
+            formData = this.formEmailLogin
+          } else if (formName === 'formPhoneLogin') {
+            formData = this.formEmailLogin
+          }
+          this.$store.dispatch('login', formData).then(() => {
             this.$router.push({ path: '/' })
           })
         }
@@ -186,6 +237,49 @@ export default {
         this.loginWayCodeEmail = false
         this.loginWayCodePhone = true
       }
+    },
+    // 获取邮箱验证码
+    handleGetEmailCode () {
+      if (this.formEmailLogin.email === '') {
+        return
+      }
+      // 发送验证码-api
+
+      this.$Message.success('验证码发送成功')
+      this.countdownGetCode('email', 59)
+      this.showBtnGetEmailCode = false
+    },
+    // 获取手机验证码
+    handleGetPhoneCode () {
+      if (this.formPhoneLogin.phone === '') {
+        return
+      }
+      // 发送验证码-api
+
+      this.$Message.success('验证码发送成功')
+      this.countdownGetCode('phone', 59)
+      this.showBtnGetPhoneCode = false
+    },
+    // 获取验证码倒计时
+    countdownGetCode (type, num) {
+      let times = setInterval(() => {
+        if (type === 'email') {
+          num = this.numGetEmailCodeCountdown--
+        } else if (type === 'phone') {
+          num = this.numGetPhoneCodeCountdown--
+        }
+
+        if (num <= 0) {
+          if (type === 'email') {
+            this.showBtnGetEmailCode = true
+            this.numGetEmailCodeCountdown = 59
+          } else if (type === 'phone') {
+            this.showBtnGetPhoneCode = true
+            this.numGetEmailCodeCountdown = 59
+          }
+          clearInterval(times)
+        }
+      }, 1000)
     }
   }
 }
