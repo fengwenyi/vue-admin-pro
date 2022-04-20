@@ -37,7 +37,7 @@
                      size="large" prefix="md-lock" placeholder="密码"/>
             </FormItem>
             <FormItem>
-              <Button class="login-form-btn-submit" @click="handleSubmit('formLogin')" on-enter="handleSubmit"
+              <Button class="login-form-btn-submit" @click="handleSubmit('formLogin')"
                       type="primary">登 录
               </Button>
             </FormItem>
@@ -52,7 +52,7 @@
               <Input type="text" v-model="formEmailLogin.email" class="login-form-input" size="large"
                      prefix="md-mail" placeholder="邮箱"/>
             </FormItem>
-            <FormItem prop="code">
+            <FormItem prop="emailCode">
               <Row :gutter="16">
                 <Col span="14">
                   <Input
@@ -70,7 +70,7 @@
               </Row>
             </FormItem>
             <FormItem>
-              <Button class="login-form-btn-submit" @click="handleSubmit('formEmailLogin')" on-enter="handleSubmit"
+              <Button class="login-form-btn-submit" @click="handleSubmit('formEmailLogin')"
                       type="primary">登 录
               </Button>
             </FormItem>
@@ -79,13 +79,13 @@
 
         <!-- 手机验证码登录 form -->
         <section v-if="loginWayCodePhone" class="login-form">
-          <Form ref="ruleFormPhoneLogin" :model="formPhoneLogin" :rules="ruleFormPhoneLogin"
+          <Form ref="formPhoneLogin" :model="formPhoneLogin" :rules="ruleFormPhoneLogin"
                 @keydown.enter.native="handleSubmit('formPhoneLogin')">
             <FormItem prop="phone">
               <Input type="text" v-model="formPhoneLogin.phone" class="login-form-input" size="large"
                      prefix="md-phone-portrait" placeholder="手机号"/>
             </FormItem>
-            <FormItem prop="code">
+            <FormItem prop="phoneCode">
               <Row :gutter="16">
                 <Col span="14">
                   <Input
@@ -103,7 +103,7 @@
               </Row>
             </FormItem>
             <FormItem>
-              <Button class="login-form-btn-submit" @click="handleSubmit('formPhoneLogin')" on-enter="handleSubmit"
+              <Button class="login-form-btn-submit" @click="handleSubmit('formPhoneLogin')"
                       type="primary">登 录
               </Button>
             </FormItem>
@@ -112,9 +112,9 @@
 
         <section class="box-other-login">
           其他登录方式
-          <Button class="btn-login" shape="circle" icon="md-lock" @click="changeLoginWay(1)"></Button>
-          <Button class="btn-login" shape="circle" icon="md-mail" @click="changeLoginWay(2)"></Button>
-          <Button class="btn-login" shape="circle" icon="md-phone-portrait" @click="changeLoginWay(3)"></Button>
+          <Button class="btn-login" shape="circle" icon="md-lock" @click="changeLoginWay('formLogin')"></Button>
+          <Button class="btn-login" shape="circle" icon="md-mail" @click="changeLoginWay('formEmailLogin')"></Button>
+          <Button class="btn-login" shape="circle" icon="md-phone-portrait" @click="changeLoginWay('formPhoneLogin')"></Button>
         </section>
       </section>
 
@@ -166,7 +166,7 @@ export default {
         email: [
           { required: true, message: '邮箱不能为空', trigger: 'blur' }
         ],
-        code: [
+        emailCode: [
           { required: true, message: '验证码不能为空', trigger: 'blur' },
           {
             type: 'string',
@@ -184,7 +184,7 @@ export default {
         phone: [
           { required: true, message: '手机号不能为空', trigger: 'blur' }
         ],
-        code: [
+        phoneCode: [
           { required: true, message: '验证码不能为空', trigger: 'blur' },
           {
             type: 'string',
@@ -203,6 +203,7 @@ export default {
   methods: {
     // 登录
     handleSubmit (formName) {
+      this.$Message.warning(formName)
       this.$refs[formName].validate((valid) => {
         if (valid) {
           let formData = {}
@@ -220,18 +221,18 @@ export default {
       })
     },
     // 切换登录方式
-    changeLoginWay (i) {
-      if (i === 1) {
+    changeLoginWay (formName) {
+      if (formName === 'formLogin') {
         this.loginWayName = '账号密码登录'
         this.loginWayPwd = true
         this.loginWayCodeEmail = false
         this.loginWayCodePhone = false
-      } else if (i === 2) {
+      } else if (formName === 'formEmailLogin') {
         this.loginWayName = '邮箱登录'
         this.loginWayPwd = false
         this.loginWayCodeEmail = true
         this.loginWayCodePhone = false
-      } else if (i === 3) {
+      } else if (formName === 'formPhoneLogin') {
         this.loginWayName = '手机号登录'
         this.loginWayPwd = false
         this.loginWayCodeEmail = false
